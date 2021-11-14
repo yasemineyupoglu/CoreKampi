@@ -41,15 +41,7 @@ namespace CoreDemo.Controllers
         [HttpGet]
         public IActionResult BlogAdd()
         {
-            GetCategoryList(); //1
-            //List<SelectListItem> categoryvalues = (from x in cm.GetList()
-            //                                       select new SelectListItem
-            //                                       {
-            //                                           Text = x.CategoryName,
-            //                                           Value=x.CategoryID.ToString()
-
-            //                                       }).ToList();
-            //ViewBag.cv = categoryvalues;
+            GetCategoryList();
             return View();
         }
 
@@ -74,7 +66,7 @@ namespace CoreDemo.Controllers
 
                 }
             }
-            GetCategoryList(); //2
+            GetCategoryList(); 
             return View();
         }
 
@@ -89,15 +81,7 @@ namespace CoreDemo.Controllers
         public IActionResult EditBlog(int id)
         {
             var blogvalue = bm.TGetById(id);
-            GetCategoryList();//3
-            //List<SelectListItem> categoryvalues = (from x in cm.GetList()
-            //                                       select new SelectListItem
-            //                                       {
-            //                                           Text = x.CategoryName,
-            //                                           Value = x.CategoryID.ToString()
-
-            //                                       }).ToList();
-            //ViewBag.cv = categoryvalues;
+            GetCategoryList();
             return View(blogvalue);
         }
 
