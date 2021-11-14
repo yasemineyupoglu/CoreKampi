@@ -41,15 +41,15 @@ namespace CoreDemo.Controllers
         [HttpGet]
         public IActionResult BlogAdd()
         {
-            
-            List<SelectListItem> categoryvalues = (from x in cm.GetList()
-                                                   select new SelectListItem
-                                                   {
-                                                       Text = x.CategoryName,
-                                                       Value=x.CategoryID.ToString()
-                                                       
-                                                   }).ToList();
-            ViewBag.cv = categoryvalues;
+            GetCategoryList(); //1
+            //List<SelectListItem> categoryvalues = (from x in cm.GetList()
+            //                                       select new SelectListItem
+            //                                       {
+            //                                           Text = x.CategoryName,
+            //                                           Value=x.CategoryID.ToString()
+
+            //                                       }).ToList();
+            //ViewBag.cv = categoryvalues;
             return View();
         }
 
@@ -74,6 +74,7 @@ namespace CoreDemo.Controllers
 
                 }
             }
+            GetCategoryList(); //2
             return View();
         }
 
@@ -88,6 +89,33 @@ namespace CoreDemo.Controllers
         public IActionResult EditBlog(int id)
         {
             var blogvalue = bm.TGetById(id);
+            GetCategoryList();//3
+            //List<SelectListItem> categoryvalues = (from x in cm.GetList()
+            //                                       select new SelectListItem
+            //                                       {
+            //                                           Text = x.CategoryName,
+            //                                           Value = x.CategoryID.ToString()
+
+            //                                       }).ToList();
+            //ViewBag.cv = categoryvalues;
+            return View(blogvalue);
+        }
+
+        [HttpPost]
+        public IActionResult EditBlog(Blog p)
+        {
+            GetCategoryList();
+            var value = bm.TGetById(p.BlogID);
+            p.WriterID = 1;
+            p.BlogCreateDate = value.BlogCreateDate;
+            //p.BlogCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString()); 
+            p.BlogStatus = true;
+            bm.TUpdate(p);
+            return RedirectToAction("BlogListByWriter");
+        }
+
+        public void GetCategoryList()
+        {
             List<SelectListItem> categoryvalues = (from x in cm.GetList()
                                                    select new SelectListItem
                                                    {
@@ -96,17 +124,6 @@ namespace CoreDemo.Controllers
 
                                                    }).ToList();
             ViewBag.cv = categoryvalues;
-            return View(blogvalue);
-        }
-
-        [HttpPost]
-        public IActionResult EditBlog(Blog p)
-        {
-            p.WriterID = 1;
-            p.BlogCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-            p.BlogStatus = true;
-            bm.TUpdate(p);
-            return RedirectToAction("BlogListByWriter");
         }
     }
 }

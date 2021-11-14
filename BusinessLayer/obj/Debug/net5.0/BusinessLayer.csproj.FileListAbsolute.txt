@@ -14,4 +14,3 @@ C:\Users\HP\source\repos\CoreDemo\BusinessLayer\obj\Debug\net5.0\BusinessLayer.c
 C:\Users\HP\source\repos\CoreDemo\BusinessLayer\obj\Debug\net5.0\BusinessLayer.dll
 C:\Users\HP\source\repos\CoreDemo\BusinessLayer\obj\Debug\net5.0\ref\BusinessLayer.dll
 C:\Users\HP\source\repos\CoreDemo\BusinessLayer\obj\Debug\net5.0\BusinessLayer.pdb
-C:\Users\HP\source\repos\CoreDemo\BusinessLayer\obj\Debug\net5.0\BusinessLayer.csproj.CopyComplete
